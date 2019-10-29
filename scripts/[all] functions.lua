@@ -1,5 +1,4 @@
 -- global variables
--- global variables
 day_start = 7  -- полная подсветка с 7 утра
 night_start = 20 - 1 -- до 20 вечера
 darker_global = -0.5  -- затемнение на 50%
