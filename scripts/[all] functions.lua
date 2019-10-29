@@ -11,19 +11,19 @@ darker_global = -0.5  -- затемнение на 50%
 -- battery_charge.lua
 
 function var_part_circle(percent, all_angle, start_angle)
---var_part_circle({bl}}, 180, 180)
+--var_part_circle({bl}, 180, 180)
 	return start_angle + percent * all_angle / 100
 end
 
 function var_color_charge(percent, charger)
 --var_color_charge({bl})
---var_color_charge({bl}, true)
+--var_color_charge({bl}, '{bc}')
 	-- сделаем плавный переход из зеленого в красный
 	-- для этого возьмем зеленый 00FF00 и за 100
 	-- шагов сделаем из него красный
 	-- //"Как я стал красным всего за 100 шагов?"
 	--		 Pre-order now from 99$!//
-	if charger then
+	if charger == "Charging" then
 		-- если на зарядке, вернем цвет по умолчанию
 		return charge_color
 	end
@@ -51,6 +51,13 @@ function var_color_charge(percent, charger)
 
 	end_line = red .. green .. "00"
 	return end_line
+end
+
+function var_charge_flashing(persent, status)
+--var_charge_flashing({bl}, '{bc}')
+	if percent ~= 100 and status == "Charging" then
+		return {drss} % 6 < 3 and 0 or 100
+	end
 end
 
 ----------------------------------------------------------------
@@ -88,12 +95,12 @@ function var_color(hour, color, darker)
     else
         -- если не задан конкретный параметр затемнения,
         -- используем глобальный
-        return color_luminance(color, darker or darker_global)
+        return var_color_luminance(color, darker or darker_global)
     end
 end
 
-function color_luminance(hex_code, lum)
---color_luminance(FFFFFF, 0.1)
+function var_color_luminance(hex_code, lum)
+--var_color_luminance(FFFFFF, 0.1)
 -- lum = -0.1 темнее на 10%
 -- lum = 0.1 светлее на 10%
     couple = {hex_code:match('(..)(..)(..)')}

@@ -1,23 +1,22 @@
 charger = false
 charge_color = "0000FF"  -- синий
 
-
 ----------------------------------------------------------------
 function var_part_circle(percent, all_angle, start_angle)
---var_part_circle({bl}}, 180, 180)
+--var_part_circle({bl}, 180, 180)
 	return start_angle + percent * all_angle / 100
 end
 
 
 function var_color_charge(percent, charger)
 --var_color_charge({bl})
---var_color_charge({bl}, true)
+--var_color_charge({bl}, '{bc}')
 	-- сделаем плавный переход из зеленого в красный
 	-- для этого возьмем зеленый 00FF00 и за 100
 	-- шагов сделаем из него красный
 	-- //"Как я стал красным всего за 100 шагов?"
 	--		 Pre-order now from 99$!//
-	if charger then
+	if charger == "Charging" then
 		-- если на зарядке, вернем цвет по умолчанию
 		return charge_color
 	end

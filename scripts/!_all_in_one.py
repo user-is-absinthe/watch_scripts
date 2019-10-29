@@ -1,15 +1,15 @@
 import os
 import re
 
-
-END_FILENAME = '[all] functions.lua'
+PATH_TO_FILES = r'/media/pi/111/projects/watches/scripts'
+END_FILENAME = PATH_TO_FILES + '/[all] functions.lua'
 ORDINARY_SPLIT = '----------------' + \
                  '----------------' + \
                  '----------------' + \
                  '----------------'
 
 
-files_in_directory = os.listdir()
+files_in_directory = os.listdir(PATH_TO_FILES)
 # убираем лишнее: файлы с префиксами, "!_*", отбираем только *.lua
 lua_names = list()
 lua_global_variables = list()
@@ -18,7 +18,8 @@ for file_name in files_in_directory:
     if '.lua' in file_name \
             and not ('[' in file_name or ']' in file_name):
         lua_names.append(file_name)
-        with open(file_name, 'r') as file:
+        path_to_file = PATH_TO_FILES + '/' + file_name
+        with open(path_to_file, 'r') as file:
             lines = file.read()
         # name, +globals, +function, -tests
         pieces = lines.split(ORDINARY_SPLIT)

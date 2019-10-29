@@ -38,13 +38,13 @@ function var_color(hour, color, darker)
     else
         -- если не задан конкретный параметр затемнения,
         -- используем глобальный
-        return color_luminance(color, darker or darker_global)
+        return var_color_luminance(color, darker or darker_global)
     end
 end
 
 
-function color_luminance(hex_code, lum)
---color_luminance(FFFFFF, 0.1)
+function var_color_luminance(hex_code, lum)
+--var_color_luminance(FFFFFF, 0.1)
 -- lum = -0.1 темнее на 10%
 -- lum = 0.1 светлее на 10%
     couple = {hex_code:match('(..)(..)(..)')}
