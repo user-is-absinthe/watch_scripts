@@ -27,9 +27,12 @@ for file_name in files_in_directory:
 # saved
 with open(END_FILENAME, 'w') as file:
     to_write = str()
-    to_write += '-- global variables\n'
-    for global_var in lua_global_variables:
-        to_write += global_var.replace('-- global variables\n', '') + '\n'
+    for index, global_var in enumerate(lua_global_variables):
+        if global_var == '':
+            continue
+        else:
+            to_write += '-- global variables from ' + lua_names[index] + '\n'
+            to_write += global_var.replace('-- global variables\n', '') + '\n'
     
     to_write += '\n\n'
 
