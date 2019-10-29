@@ -53,13 +53,6 @@ function var_color_charge(percent, charger)
 	return end_line
 end
 
-function var_charge_flashing(persent, status)
---var_charge_flashing({bl}, '{bc}')
-	if percent ~= 100 and status == "Charging" then
-		return {drss} % 6 < 3 and 0 or 100
-	end
-end
-
 ----------------------------------------------------------------
 -- color_and_luminance.lua
 
